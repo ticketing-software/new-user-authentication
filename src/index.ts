@@ -8,6 +8,7 @@ import { signOutRouter } from "./routes/signout";
 import "dotenv/config";
 import { connectDB } from "./db-connection";
 import { errorHandler } from "./middlewares/error-handler";
+import PathNotFound from "./errors/path-not-found";
 
 const app = express();
 
@@ -21,8 +22,8 @@ app.use(signInRoute);
 app.use(currentUserRouter);
 app.use(signOutRouter);
 
-app.all("*", async () => {
-  throw new Error("Not Found");
+app.all("*", async (request: Request) => {
+  throw new PathNotFound("Not Found", request.path);
 });
 
 app.use(errorHandler);
