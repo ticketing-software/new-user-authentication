@@ -2,7 +2,7 @@ FROM node:12
 
 ARG DB=defaultValue
 
-ENV DB_CONNECTION_STRING = ${DB}
+ENV DB_CONNECTION_STRING =${DB}
 
 WORKDIR /app
 
