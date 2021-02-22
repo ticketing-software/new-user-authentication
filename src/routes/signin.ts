@@ -21,6 +21,7 @@ router.post(
       expires: new Date(Date.now() + 900000),
       httpOnly: false,
       sameSite: true,
+      secure: true,
     });
 
     response.send({

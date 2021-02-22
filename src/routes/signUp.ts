@@ -38,6 +38,7 @@ router.post(
         maxAge: 3600,
         path: "/",
         sameSite: true,
+        secure: true,
       })
     );
 
