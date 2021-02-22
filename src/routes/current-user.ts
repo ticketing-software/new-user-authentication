@@ -10,7 +10,7 @@ interface UserPayload {
 }
 
 router.get(
-  "/api/users/current-user",
+  "/api/users/currentuser",
   currentUserVerification,
   (request: Request, response: Response) => {
     response.send({

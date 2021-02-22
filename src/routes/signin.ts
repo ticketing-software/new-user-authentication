@@ -25,6 +25,7 @@ router.post(
     response.send({
       message: "Signed in successfully",
       email,
+      accessToken: jwtToken,
     });
   }
 );

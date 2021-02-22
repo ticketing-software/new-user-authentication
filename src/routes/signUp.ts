@@ -5,6 +5,8 @@ import { User } from "../models/user";
 import validateSignUp from "../middlewares/validate-signup";
 import jwt from "jsonwebtoken";
 
+import { serialize } from "cookie";
+
 const router = Router();
 
 router.post(
@@ -24,12 +26,21 @@ router.post(
       "asdf"
     );
 
-    response.cookie("user", theJsonWebToken, {
-      expires: new Date(Date.now() + 900000),
-      httpOnly: false,
-    });
+    // response.cookie("user", theJsonWebToken, {
+    //   expires: new Date(Date.now() + 900000),
+    //   httpOnly: false,
+    // });
 
-    response.send(user);
+    response.setHeader(
+      "Set-Cookie",
+      serialize("user", theJsonWebToken, {
+        httpOnly: false,
+        maxAge: 3600,
+        path: "/",
+      })
+    );
+
+    response.status(201).send({ user, accessToken: theJsonWebToken });
   }
 );
 
