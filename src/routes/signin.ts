@@ -20,8 +20,8 @@ router.post(
     response.cookie("user", jwtToken, {
       expires: new Date(Date.now() + 900000),
       httpOnly: false,
-      sameSite: true,
-      // secure: true,
+      sameSite: false,
+      secure: true,
     });
 
     response.send({
