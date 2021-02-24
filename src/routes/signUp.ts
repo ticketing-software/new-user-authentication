@@ -37,7 +37,7 @@ router.post(
         httpOnly: false,
         maxAge: 3600,
         path: "/",
-        sameSite: true,
+        sameSite: "lax",
         secure: true,
       })
     );
