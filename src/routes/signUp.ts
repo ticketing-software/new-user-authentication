@@ -31,16 +31,23 @@ router.post(
     //   httpOnly: false,
     // });
 
-    response.setHeader(
-      "Set-Cookie",
-      serialize("user", theJsonWebToken, {
-        httpOnly: false,
-        maxAge: 3600,
-        path: "/",
-        sameSite: "lax",
-        secure: true,
-      })
-    );
+    // response.setHeader(
+    //   "Set-Cookie",
+    //   serialize("user", theJsonWebToken, {
+    //     httpOnly: false,
+    //     expires: new Date(Date.now() + 900000),
+    //     // maxAge: 3600,
+    //     // path: "/",
+    //     sameSite: "lax",
+    //     // secure: true,
+    //   })
+    // );
+
+    response.cookie("user", theJsonWebToken, {
+      expires: new Date(Date.now() + 900000),
+      httpOnly: false,
+      sameSite: true,
+    });
 
     response.status(201).send({ user, accessToken: theJsonWebToken });
   }
